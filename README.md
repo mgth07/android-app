@@ -1,27 +1,23 @@
-# 오늘 할 일
+# 산책하는 강아지
 
-Android 6.0 이상에서 실행되는 작은 할 일 목록 앱입니다.
+홈 화면과 다른 앱 위에서 작은 강아지가 뛰어다니는 Android 앱입니다.
 
-- 할 일 추가, 완료 표시, 삭제
-- 앱을 종료해도 기기 내 저장 유지
-- 인터넷 연결 및 별도 계정 불필요
-- 한국어 화면과 빈 목록 안내
+1. 앱의 표시 권한 설정에서 '다른 앱 위에 표시'를 허용하세요.
+2. 앱으로 돌아와 강아지 시작을 누르고 홈 화면으로 나가세요.
+3. 강아지를 누르면 점프하고 드래그하면 원하는 위치로 이동합니다.
+4. 앱의 강아지 멈추기 또는 알림의 멈추기로 종료하세요.
 
-## APK 만들기
+기존 오늘 할 일 앱을 업데이트하면 이 앱으로 바뀝니다. 인터넷 권한은 사용하지 않습니다.
+강아지는 Canvas 캐릭터이며 약 30fps로 움직입니다. 사용자가 시작할 때만 실행하며 재부팅 후 자동 시작하지 않습니다.
+일부 보안 화면은 Android가 강아지 표시를 숨길 수 있습니다.
 
-GitHub에 프로젝트를 올리면 Actions → Build Android APK에서 빌드합니다.
-초록색으로 완료된 실행의 Artifacts에서 daily-todo-debug-apk를 내려받고 ZIP을 풀면 설치 가능한 app-debug.apk가 있습니다.
-이는 개발용 서명 APK입니다. Play Store 배포에는 별도의 릴리스 서명 구성이 필요합니다.
+## APK
+
+Actions의 성공한 Build Android APK 실행에서 Artifacts → walking-dog-debug-apk를 내려받고 압축을 풀어 app-debug.apk를 설치하세요.
+개발용 APK이며 실제 기기에서 표시 권한, 홈 화면 이동, 드래그, 점프, 화면 회전, 알림 및 앱 버튼으로 종료를 확인해야 합니다.
 
 ## 개발 환경
 
-JDK 17, Android SDK 35, Gradle 8.11.1, Android Gradle Plugin 8.9.2.
-Android Studio에서 프로젝트 폴더를 열거나 Gradle 8.11.1 설치 후 다음을 실행합니다.
-
-```sh
-gradle wrapper --gradle-version 8.11.1 --distribution-type bin
-./gradlew assembleDebug lintDebug
-```
-
-Windows에서는 마지막 명령의 ./gradlew 대신 gradlew.bat를 사용합니다.
-첫 CI 빌드에서 공식 Gradle로 wrapper를 생성하며, 저장소에 wrapper 바이너리는 아직 포함하지 않습니다.
+JDK 17, SDK 35, AGP 8.9.2, Gradle 8.11.1.
+CI에서 Gradle wrapper를 생성하고 assembleDebug 및 lintDebug를 실행합니다.
+로컬에서는 Gradle 8.11.1 설치 후 `gradle wrapper --gradle-version 8.11.1`을 실행하고 `./gradlew assembleDebug lintDebug`로 빌드합니다.
