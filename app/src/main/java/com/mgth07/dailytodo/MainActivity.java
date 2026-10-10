@@ -9,7 +9,7 @@ public class MainActivity extends Activity {
  private TextView status;
  public void onCreate(Bundle b) {
   super.onCreate(b);
-  LinearLayout root=new LinearLayout(this); root.setOrientation(1); int p=24;
+  LinearLayout root=new LinearLayout(this); root.setOrientation(LinearLayout.VERTICAL); int p=Math.round(24*getResources().getDisplayMetrics().density);
   root.setPadding(p,p,p,p); root.setBackgroundColor(0xfffff8ea);
   root.setOnApplyWindowInsetsListener((v,i)->{v.setPadding(p+i.getSystemWindowInsetLeft(),p+i.getSystemWindowInsetTop(),p+i.getSystemWindowInsetRight(),p+i.getSystemWindowInsetBottom());return i;});
   TextView title=new TextView(this);title.setText("산책하는 강아지");title.setTextSize(30);root.addView(title);
@@ -17,7 +17,7 @@ public class MainActivity extends Activity {
   status=new TextView(this);root.addView(status);
   button(root,"① 표시 권한 설정",()->startActivity(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,Uri.parse("package:"+getPackageName()))));
   button(root,"② 강아지 시작",()->{
-   if(!Settings.canDrawOverlays(this)){Toast.makeText(this,"먼저 표시 권한을 켜 주세요",1).show();return;}
+   if(!Settings.canDrawOverlays(this)){Toast.makeText(this,"먼저 표시 권한을 켜 주세요",Toast.LENGTH_LONG).show();return;}
    if(Build.VERSION.SDK_INT>=33 && checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS)!=android.content.pm.PackageManager.PERMISSION_GRANTED)requestPermissions(new String[]{android.Manifest.permission.POST_NOTIFICATIONS},1);
    Intent i=new Intent(this,DogService.class);if(Build.VERSION.SDK_INT>=26)startForegroundService(i);else startService(i);
   });
